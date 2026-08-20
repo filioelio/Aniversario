@@ -1,0 +1,125 @@
+/* ============================================================
+   RESPONSIVE — Mobile first (375-414px de base).
+   Ajustes progresivos para tablet y escritorio.
+   ============================================================ */
+
+/* ---------- Pantallas muy pequeñas (< 360px) ---------- */
+@media (max-width: 359px) {
+  .portada__content {
+    padding: var(--espacio-l) var(--espacio-m);
+  }
+
+  .contador__grid,
+  .galeria,
+  .fotos-secretas {
+    gap: 0.6rem;
+  }
+}
+
+/* ---------- Tablets (>= 768px) ---------- */
+@media (min-width: 768px) {
+  .experiencia {
+    max-width: 640px;
+  }
+
+  .capitulos {
+    padding: var(--espacio-xl) var(--espacio-l);
+  }
+
+  .galeria,
+  .fotos-secretas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contador__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .navegacion {
+    max-width: 640px;
+  }
+}
+
+/* ---------- Escritorio (>= 1024px) ---------- */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .portada {
+    width: 100%;
+  }
+
+  .experiencia {
+    max-width: 720px;
+  }
+
+  .navegacion {
+    max-width: 720px;
+  }
+
+  .portada__content {
+    padding: var(--espacio-xl) calc(var(--espacio-xl) * 1.2);
+  }
+
+  .capitulo__titulo {
+    font-size: 2.2rem;
+  }
+
+  /* En pantallas grandes las tarjetas de recuerdos pueden alternar lados */
+  .tarjeta-recuerdo:nth-child(even) {
+    margin-left: var(--espacio-xl);
+  }
+
+  .tarjeta-recuerdo:nth-child(odd) {
+    margin-right: var(--espacio-xl);
+  }
+}
+
+/* ---------- Pantallas grandes (>= 1440px) ---------- */
+@media (min-width: 1440px) {
+  .experiencia,
+  .navegacion {
+    max-width: 800px;
+  }
+}
+
+/* ---------- Orientación horizontal en móvil ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .portada {
+    min-height: auto;
+    padding: var(--espacio-m);
+  }
+
+  .portada__content {
+    padding: var(--espacio-m) var(--espacio-l);
+  }
+
+  .corazon-gigante__boton {
+    font-size: 4rem;
+  }
+
+  .navegacion {
+    position: sticky;
+  }
+}
+
+/* ---------- Evitar scroll horizontal en cualquier tamaño ---------- */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ---------- Rotación ligera de fotos tipo polaroid (variedad) ---------- */
+.polaroid:nth-child(4n+1) { transform: rotate(-2deg); }
+.polaroid:nth-child(4n+2) { transform: rotate(2deg); }
+.polaroid:nth-child(4n+3) { transform: rotate(-1deg); }
+.polaroid:nth-child(4n+4) { transform: rotate(1.5deg); }
+
+@media (hover: hover) {
+  .polaroid:hover,
+  .btn:hover {
+    transform: scale(1.02);
+  }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de QR — Herramienta del propietario</title>
+
+<!--
+  Esta página es SOLAMENTE una herramienta para ti (el propietario del sitio).
+  No forma parte de la experiencia romántica que verá tu pareja.
+  Úsala una vez que tu sitio ya esté publicado en GitHub Pages, para generar
+  el código QR que vas a compartir.
+
+  Usa una biblioteca ligera de QR mediante CDN (solo en esta página utilitaria,
+  el resto del proyecto no depende de ningún CDN ni framework).
+-->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" defer></script>
+
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(160deg, #150a10, #23111a);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #fdf6f3;
+  }
+  .tarjeta {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(12px);
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+  p.info {
+    font-size: 0.85rem;
+    color: rgba(253, 246, 243, 0.7);
+    margin-bottom: 1.5rem;
+  }
+  input[type="url"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.25);
+    color: #fdf6f3;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  button {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d9435f, #4a1027);
+    color: #fdf6f3;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 0.6rem;
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  button.secundario {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  #qr-resultado {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  #qr-resultado canvas,
+  #qr-resultado img {
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px;
+    max-width: 100%;
+  }
+  .oculto { display: none; }
+  #estado {
+    font-size: 0.8rem;
+    color: #e0b876;
+    min-height: 1.2em;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="tarjeta">
+  <h1>Generador de QR ❤️</h1>
+  <p class="info">
+    Pega aquí la URL de tu sitio ya publicado en GitHub Pages
+    (por ejemplo: <code>https://usuario.github.io/aniversario/</code>)
+    y genera el código QR para compartirlo.
+  </p>
+
+  <input type="url" id="input-url" placeholder="https://usuario.github.io/aniversario/">
+  <button id="btn-generar" type="button">Generar QR ❤️</button>
+  <p id="estado"></p>
+
+  <div id="qr-resultado"></div>
+
+  <button id="btn-descargar" type="button" class="secundario oculto">Guardar QR como imagen</button>
+</div>
+
+<script>
+  // Esta herramienta es independiente de la experiencia principal.
+  // Si la biblioteca del CDN no carga (por ejemplo, sin conexión),
+  // se informa al usuario en vez de romper la página.
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('input-url');
+    const btnGenerar = document.getElementById('btn-generar');
+    const btnDescargar = document.getElementById('btn-descargar');
+    const resultado = document.getElementById('qr-resultado');
+    const estado = document.getElementById('estado');
+
+    btnGenerar.addEventListener('click', () => {
+      const url = input.value.trim();
+      resultado.innerHTML = '';
+      btnDescargar.classList.add('oculto');
+      estado.textContent = '';
+
+      if (!url) {
+        estado.textContent = 'Ingresa primero la URL de tu sitio.';
+        return;
+      }
+
+      if (typeof QRCode === 'undefined') {
+        estado.textContent = 'No se pudo cargar el generador de QR (revisa tu conexión a internet).';
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      QRCode.toCanvas(canvas, url, { width: 260, margin: 2 }, (error) => {
+        if (error) {
+          estado.textContent = 'No se pudo generar el QR. Verifica que la URL sea válida.';
+          return;
+        }
+        resultado.appendChild(canvas);
+        btnDescargar.classList.remove('oculto');
+      });
+    });
+
+    btnDescargar.addEventListener('click', () => {
+      const canvas = resultado.querySelector('canvas');
+      if (!canvas) return;
+      const enlace = document.createElement('a');
+      enlace.download = 'qr-aniversario.png';
+      enlace.href = canvas.toDataURL('image/png');
+      enlace.click();
+    });
+  });
+</script>
+
+</body>
+</html>

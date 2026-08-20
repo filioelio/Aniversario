@@ -1,0 +1,306 @@
+/* ============================================================
+   ANIMACIONES — transiciones, corazones, partículas
+   Prioriza transform/opacity para rendimiento en móviles.
+   ============================================================ */
+
+/* ---------- Botón con pulso sutil ---------- */
+.btn--pulso {
+  animation: pulso 2.4s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { box-shadow: 0 8px 24px rgba(217, 67, 95, 0.45); }
+  50% { box-shadow: 0 8px 34px rgba(217, 67, 95, 0.75); }
+}
+
+/* ---------- Revelado de elementos (IntersectionObserver) ---------- */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal {
+  transform: translateY(24px);
+}
+
+.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Transición de capítulos ---------- */
+.capitulo {
+  opacity: 0;
+}
+
+.capitulo--activo {
+  animation: capitulo-entrada 0.6s ease forwards;
+}
+
+@keyframes capitulo-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.capitulo--saliendo {
+  animation: capitulo-salida 0.35s ease forwards;
+}
+
+@keyframes capitulo-salida {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+}
+
+/* ---------- Portada: salida ---------- */
+.portada--saliendo {
+  animation: portada-salida 0.6s ease forwards;
+}
+
+@keyframes portada-salida {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.05); }
+}
+
+/* ---------- Corazones flotantes de fondo ---------- */
+.corazon-flotante {
+  position: absolute;
+  bottom: -10%;
+  will-change: transform, opacity;
+  animation-name: flotar;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--opacidad-max, 0.6);
+  }
+  50% {
+    transform: translateY(-55vh) translateX(var(--deriva, 20px)) rotate(15deg);
+  }
+  90% {
+    opacity: var(--opacidad-max, 0.6);
+  }
+  100% {
+    transform: translateY(-115vh) translateX(calc(var(--deriva, 20px) * -1)) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- Explosión de corazones ---------- */
+.corazon-explosion {
+  position: fixed;
+  z-index: 40;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: explosion 1s ease-out forwards;
+}
+
+@keyframes explosion {
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    transform:
+      translate(var(--dx, 0px), var(--dy, 0px))
+      scale(var(--escala-final, 1.1))
+      rotate(var(--rotacion, 180deg));
+    opacity: 0;
+  }
+}
+
+/* ---------- Toque en pantalla ---------- */
+.corazon-tap {
+  position: fixed;
+  z-index: 35;
+  pointer-events: none;
+  animation: tap-flotar 1.1s ease-out forwards;
+}
+
+@keyframes tap-flotar {
+  0% { transform: translateY(0) scale(0.7); opacity: 1; }
+  100% { transform: translateY(-70px) scale(1); opacity: 0; }
+}
+
+/* ---------- Lluvia de corazones ---------- */
+.corazon-lluvia {
+  position: fixed;
+  top: -10%;
+  z-index: 45;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+/* ---------- Confeti romántico ---------- */
+.confeti {
+  position: fixed;
+  z-index: 45;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-name: confeti-caer;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confeti-caer {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(90vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- Vibración de caja de regalo ---------- */
+.caja-regalo--tiembla {
+  animation: temblar 0.4s ease;
+}
+
+@keyframes temblar {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+.caja-regalo--entreabierta {
+  animation: escala-suave 0.4s ease;
+}
+
+.caja-regalo--abierta {
+  animation: abrir-caja 0.5s ease forwards;
+}
+
+@keyframes escala-suave {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1.05); }
+}
+
+@keyframes abrir-caja {
+  0% { transform: scale(1.05); }
+  60% { transform: scale(1.3) rotate(-6deg); }
+  100% { transform: scale(1.2) rotate(0deg); }
+}
+
+/* ---------- Corazón gigante: pulso continuo ---------- */
+.corazon-gigante__boton {
+  animation: latido 1.8s ease-in-out infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.corazon-gigante__boton--tocado {
+  animation: latido-fuerte 0.35s ease;
+}
+
+@keyframes latido-fuerte {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  animation: fundido 0.25s ease;
+}
+
+@keyframes fundido {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Efecto de escritura (cursor) ---------- */
+.escritura-cursor::after {
+  content: '|';
+  animation: parpadeo 0.9s steps(1) infinite;
+  color: var(--color-dorado, #e0b876);
+}
+
+@keyframes parpadeo {
+  50% { opacity: 0; }
+}
+
+/* ---------- Respetar preferencia de movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .corazon-flotante,
+  .corazon-explosion,
+  .corazon-lluvia,
+  .confeti,
+  .corazon-tap {
+    display: none !important;
+  }
+
+  .btn--pulso,
+  .corazon-gigante__boton {
+    animation: none !important;
+  }
+}

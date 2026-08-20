@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<title>Nuestra Historia ❤️</title>
+
+<!-- Metadatos para compartir el enlace de forma elegante -->
+<meta name="description" content="Una pequeña experiencia digital creada especialmente para ti. Nuestra historia merece ser recordada.">
+<meta property="og:title" content="Tengo algo preparado para ti ❤️">
+<meta property="og:description" content="Nuestra historia merece ser recordada...">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/images/portada.jpg">
+<meta name="theme-color" content="#1a0f14">
+
+<!-- Favicon: reemplaza assets/icons/favicon.png si prefieres un ícono propio -->
+<link rel="icon" href="assets/icons/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<noscript>
+  <div class="noscript-message">
+    Esta experiencia necesita JavaScript habilitado para poder mostrarte nuestra historia. Por favor, activa JavaScript en tu navegador. ❤️
+  </div>
+</noscript>
+
+<!-- Fondo animado de corazones flotantes (poblado por hearts.js) -->
+<div id="floating-hearts" class="floating-hearts" aria-hidden="true"></div>
+
+<!-- ============ PORTADA / PANTALLA DE BIENVENIDA ============ -->
+<section id="portada" class="portada">
+  <div class="portada__content reveal">
+    <p class="portada__eyebrow">Para ti</p>
+    <h1 class="portada__titulo">Tengo algo preparado para ti ❤️</h1>
+    <p class="portada__subtitulo">Nuestra historia merece ser recordada...</p>
+    <button id="btn-descubrir" class="btn btn--primario btn--pulso" type="button">
+      DESCUBRIR NUESTRA HISTORIA ❤️
+    </button>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCIA PRINCIPAL ============ -->
+<div id="experiencia" class="experiencia oculto">
+
+  <!-- Indicador de progreso -->
+  <header class="progreso" id="progreso">
+    <p class="progreso__titulo">Nuestra historia ❤️</p>
+    <div class="progreso__barra" role="progressbar" aria-label="Progreso de la historia" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="progreso__relleno" id="progreso-relleno"></div>
+    </div>
+    <div class="progreso__puntos" id="progreso-puntos"></div>
+  </header>
+
+  <main id="capitulos" class="capitulos">
+
+    <!-- CAPÍTULO 01 — Cuando empezó todo -->
+    <section class="capitulo" data-chapter="0" id="capitulo-0">
+      <p class="capitulo__numero">01</p>
+      <h2 class="capitulo__titulo">Cuando empezó todo</h2>
+
+      <figure class="foto-portada reveal-scale">
+        <img src="assets/images/historia/01.jpg" alt="El día en que todo comenzó" loading="lazy"
+             onerror="this.onerror=null;this.src='';this.classList.add('foto--vacia');">
+        <figcaption id="cap0-lugar">[LUGAR]</figcaption>
+      </figure>
+
+      <div class="capitulo__texto reveal">
+        <p class="fecha-destacada" id="cap0-fecha">[FECHA]</p>
+        <p id="cap0-historia">
+          Ese día quizás ninguno de los dos imaginaba todo lo que vendría después...
+          Pero aquí comenzó nuestra historia. ❤️
+        </p>
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 02 — Nuestra primera aventura -->
+    <section class="capitulo" data-chapter="1" id="capitulo-1">
+      <p class="capitulo__numero">02</p>
+      <h2 class="capitulo__titulo">Nuestra primera aventura</h2>
+      <div class="tarjetas-recuerdos" id="tarjetas-recuerdos">
+        <!-- Generadas dinámicamente por timeline.js desde ourStory -->
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 03 — Nuestros mejores momentos -->
+    <section class="capitulo" data-chapter="2" id="capitulo-2">
+      <p class="capitulo__numero">03</p>
+      <h2 class="capitulo__titulo">Nuestros mejores momentos</h2>
+
+      <div class="timeline" id="timeline">
+        <!-- Generado dinámicamente por timeline.js -->
+      </div>
+
+      <h3 class="subtitulo-seccion">Galería de recuerdos</h3>
+      <div class="galeria" id="galeria">
+        <!-- Generada dinámicamente por timeline.js -->
+      </div>
+
+      <h3 class="subtitulo-seccion">Recuerdos escondidos</h3>
+      <div class="fotos-secretas" id="fotos-secretas">
+        <!-- Generadas dinámicamente por timeline.js -->
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 04 — Todo lo que hemos vivido -->
+    <section class="capitulo" data-chapter="3" id="capitulo-3">
+      <p class="capitulo__numero">04</p>
+      <h2 class="capitulo__titulo">Todo lo que hemos vivido</h2>
+
+      <div class="contador reveal">
+        <p class="contador__intro">Llevamos escribiendo nuestra historia</p>
+        <div class="contador__grid" id="contador-grid">
+          <div class="contador__item">
+            <span class="contador__numero" id="contador-anios">0</span>
+            <span class="contador__label">años</span>
+          </div>
+          <div class="contador__item">
+            <span class="contador__numero" id="contador-meses">0</span>
+            <span class="contador__label">meses</span>
+          </div>
+          <div class="contador__item">
+            <span class="contador__numero" id="contador-dias">0</span>
+            <span class="contador__label">días</span>
+          </div>
+          <div class="contador__item">
+            <span class="contador__numero" id="contador-horas">0</span>
+            <span class="contador__label">horas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 05 — Lo que amo de ti -->
+    <section class="capitulo" data-chapter="4" id="capitulo-4">
+      <p class="capitulo__numero">05</p>
+      <h2 class="capitulo__titulo">Lo que amo de ti</h2>
+
+      <div class="razones reveal">
+        <p class="razones__intro">Hay muchas cosas que amo de ti...</p>
+        <p class="razones__instruccion">Toca los corazones para descubrir algunas ❤️</p>
+        <div class="razones__contenedor" id="razones-contenedor"></div>
+        <p class="razones__revelada" id="razones-revelada" aria-live="polite"></p>
+      </div>
+
+      <div class="pregunta reveal" id="seccion-pregunta">
+        <p class="pregunta__intro">Tengo una pregunta importante...</p>
+        <h3 class="pregunta__titulo">¿Me amas?</h3>
+        <div class="pregunta__botones" id="pregunta-botones">
+          <button type="button" class="btn btn--si" id="btn-si">SÍ ❤️</button>
+          <button type="button" class="btn btn--no" id="btn-no">NO 🙈</button>
+        </div>
+        <p class="pregunta__resultado" id="pregunta-resultado" aria-live="polite"></p>
+      </div>
+
+      <div class="regalo reveal" id="seccion-regalo">
+        <p class="regalo__intro">Tengo una pequeña sorpresa para ti 🎁</p>
+        <button type="button" class="caja-regalo" id="caja-regalo" aria-label="Tocar para abrir el regalo">
+          <span class="caja-regalo__emoji">🎁</span>
+        </button>
+        <div class="regalo__contenido oculto" id="regalo-contenido">
+          <img src="assets/images/galeria/regalo.jpg" alt="Sorpresa secreta" loading="lazy"
+               onerror="this.onerror=null;this.classList.add('foto--vacia');">
+          <p id="regalo-mensaje">Esto es solo el comienzo de todas las sorpresas que quiero darte. ❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 06 — Nuestro aniversario -->
+    <section class="capitulo" data-chapter="5" id="capitulo-5">
+      <p class="capitulo__numero">06</p>
+      <h2 class="capitulo__titulo">Nuestro aniversario</h2>
+
+      <div class="corazon-gigante reveal">
+        <p class="corazon-gigante__intro">Antes de continuar...</p>
+        <p class="corazon-gigante__instruccion">Presiona mi corazón ❤️</p>
+        <button type="button" class="corazon-gigante__boton" id="btn-corazon-gigante" aria-label="Tocar corazón">❤️</button>
+        <p class="corazon-gigante__contador" id="corazon-gigante-contador">❤️ x 0</p>
+      </div>
+    </section>
+
+    <!-- CAPÍTULO 07 — Tengo algo más que decirte... -->
+    <section class="capitulo" data-chapter="6" id="capitulo-6">
+      <p class="capitulo__numero">07</p>
+      <h2 class="capitulo__titulo">Tengo algo más que decirte...</h2>
+
+      <article class="carta reveal" id="carta">
+        <h3 class="carta__titulo">Para ti ❤️</h3>
+        <div class="carta__texto" id="carta-texto"></div>
+      </article>
+
+      <div class="gran-final oculto" id="gran-final">
+        <p class="gran-final__intro">Pero aún falta algo...</p>
+        <button type="button" class="btn btn--primario btn--pulso" id="btn-final">TOCA AQUÍ ❤️</button>
+      </div>
+
+      <div class="final-mensaje oculto" id="final-mensaje">
+        <h2 class="final-mensaje__titulo">FELIZ ANIVERSARIO ❤️</h2>
+        <p class="final-mensaje__frase">Te elegiría una y mil veces.</p>
+        <p class="final-mensaje__continua">Nuestra historia continúa...<br>∞</p>
+        <button type="button" class="btn btn--secundario" id="btn-reiniciar">Comenzar nuevamente ❤️</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Navegación entre capítulos -->
+  <nav class="navegacion" id="navegacion">
+    <button type="button" class="btn btn--nav" id="btn-anterior" disabled>← Anterior</button>
+    <button type="button" class="btn btn--nav btn--nav-siguiente" id="btn-siguiente">Continuar ❤️ →</button>
+  </nav>
+
+</div>
+
+<!-- Botón de música flotante -->
+<button type="button" id="btn-musica" class="btn-musica" aria-label="Activar o desactivar música" aria-pressed="false">
+  <span id="btn-musica-icono">♫</span>
+</button>
+<audio id="audio-musica" loop preload="none">
+  <source src="assets/music/nuestra-cancion.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Modal de galería / foto ampliada -->
+<div class="modal oculto" id="modal-foto" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal__fondo" id="modal-fondo"></div>
+  <div class="modal__contenido">
+    <button type="button" class="modal__cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
+    <button type="button" class="modal__nav modal__nav--prev" id="modal-prev" aria-label="Foto anterior">‹</button>
+    <img id="modal-imagen" src="" alt="" loading="lazy">
+    <p id="modal-descripcion" class="modal__descripcion"></p>
+    <button type="button" class="modal__nav modal__nav--next" id="modal-next" aria-label="Foto siguiente">›</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/hearts.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/surprises.js"></script>
+<script src="js/music.js"></script>
+</body>
+</html>
